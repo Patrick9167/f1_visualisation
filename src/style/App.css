@@ -1,0 +1,228 @@
+html {
+  min-height: 100% !important;
+  height: 100%;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap');
+
+.App {
+  height:100%;
+  text-align: center;
+  background-color: red;
+  font-family: "Raleway"
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+#mainTitle{
+  font-family: "Roboto";
+  font-size: 50px;
+  padding-top: 20px;
+  color: white; /*#E53013; */
+}
+
+/*  */
+/*  */
+/*  */
+/*  */
+ /* TEAM, ENGINE, CIRCUIT menus */
+ /*  */
+ /*  */
+ /*  */
+ /*  */
+
+.menu_wrapper_team {
+  position: absolute;
+  left: 0%;
+  top: 20%;
+  width: 10%;
+}
+
+.menu_wrapper_engine {
+  position: absolute;
+  left: 0%;
+  top: 70%;
+  width: 10%;
+}
+
+.menu_wrapper_circuit {
+  position: absolute;
+  left: 10%;
+  top: 20%;
+  width: 10%;
+}
+
+button {
+  background-color: white; /* Green background */
+  border: 1px solid white; /* Green border */
+  color: black; /* White text */
+  padding: 10px 24px; /* Some padding */
+  cursor: pointer; /* Pointer/hand icon */
+  width: 100%; /* Set a width if needed */
+  display: block; /* Make the buttons appear below each other */
+  font-family: "Roboto";
+}
+
+button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+/* Add a background color on hover */
+button:hover {
+  background-color: #E53013;
+}
+
+
+/*  */
+/*  */
+/*  */
+/*  */
+ /* BAR CHART and DRIVERS + CARS */
+ /*  */
+ /*  */
+ /*  */
+ /*  */
+.teamHeaderBox {
+    border-radius: 10px;
+    border: 1px solid black; /* Green border */
+    width: max-content;
+    padding:8px;
+    margin:auto;
+}
+
+.yTrans{
+  transform: translate(20px, 300px) rotate(-90deg)
+}
+
+.chart_legend_wrapper {
+  position: absolute;
+  top: 60%;
+  left: 40%;
+  margin-left: -350px;
+  margin-top: -400px;
+  width: 1000px;
+  height: 1000px;
+}
+
+ .barchart {
+  width:auto;
+  height:auto;
+}
+
+.barchart svg {
+  /* border: 1px solid #666; */
+  margin: 5px;
+  vertical-align: top;
+}
+
+/*  */
+ /* car image + drivers */
+ /*  */
+
+.dr {
+  width:250px;
+  height:350px;
+}
+
+#current_driver_info {
+  margin:auto;
+  max-width: 500px;
+  height: 400px;
+  padding-bottom: 20px;
+}
+
+.dr_name {
+  display: inline-block;
+  text-align: center;
+  width: 250px;
+}
+
+.dr_name button {
+  font-size: 25px;
+  background-color: white; /* Green background */
+  border: 1px solid white; /* Green border */
+  color: black; /* White text */
+  cursor: pointer; /* Pointer/hand icon */
+  width: 100%; /* Set a width if needed */
+  font-family: Roboto;
+}
+
+.dr_name button:hover {
+  background-color: #E53013;
+}
+
+/*  */
+ /* engine logo + info */
+ /*  */
+
+#engine_info {
+  display: none;
+  margin:auto;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.en {
+  width:200px;
+  height:200px;
+}
+
+/*  */
+/*  */
+/*  */
+/*  */
+ /* CIRCUIT map */
+ /*  */
+ /*  */
+ /*  */
+ /*  */
+
+.circuit_wrapper {
+  position: absolute;
+  right:0%;
+  top:20%;
+}
+
+.circ {
+  width: 500px;
+  height:300px;
+}
+
+.lineToggle:hover button {
+  background-color: #E53013;
+  max-width: 200px;
+}
+
+.lineToggle:hover h3 {
+  color:white;
+}
+
+.lineToggle {
+  border-radius: 25px;
+  color: #E53013;
+  font-size: 17px;
+  width: 200px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(0deg); }
+}

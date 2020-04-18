@@ -1,0 +1,5 @@
+Setup
+
+- React download
+- createreactapp around project directory
+- npm start to run in localhost on browser

@@ -1,0 +1,21 @@
+{
+  "name": "assign3_r",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "d3-array": "2.4.0",
+    "d3-scale": "3.2.1",
+    "d3-selection": "1.4.1",
+    "react": "^16.13.0",
+    "react-csv-reader": "^3.0.2",
+    "react-dom": "^16.13.0",
+    "react-scripts": "0.9.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
