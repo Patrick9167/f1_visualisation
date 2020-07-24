@@ -14,7 +14,6 @@ function importAll(r) {
 }
 
 
-
 class App extends Component {
   state = {
     laptimes: driverLaps,
@@ -30,7 +29,7 @@ class App extends Component {
     this.setState({driver: teams[t]["driver00"]})
     this.setState({driverRef1: teams[t]["driver00"]})
       if(t=="6" || t=="8") {
-        if(parseInt(circuits[this.state.circuit]["key"])<=1021) {
+        if(parseInt(circuits[this.state.circuit]["key"])  <=1021) {
           this.setState({driverRef2: teams[t]["driver01"]})
         } else if(parseInt(circuits[this.state.circuit]["key"])>1021) {
           this.setState({driverRef2: teams[t]["driver02"]})
@@ -73,8 +72,8 @@ class App extends Component {
     const circuitPic = importAll(require.context('./f1/images/circuits/', false, /\.(PNG|png|jpe?g|svg)$/));
 
 
-    const data = [this.state.linetype,this.state.laptimes[this.state.driver][this.state.circuit+"time"], this.state.laptimes[this.state.driver][this.state.circuit+"total_laps"],
-     this.state.laptimes[this.state.driver][this.state.circuit+"longest_lap"], circuits[this.state.circuit]["avg_lap"], circuits[this.state.circuit]["best_lap"]]
+    const data = [this.state.linetype,this.state.laptimes[this.state.driver][this.state.circuit+"time"], circuits[this.state.circuit]["total_laps"],
+     circuits[this.state.circuit]["longest_lap"], circuits[this.state.circuit]["avg_lap"], circuits[this.state.circuit]["best_lap"]]
 
     return (
       <div className="App">

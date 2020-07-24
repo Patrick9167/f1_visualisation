@@ -37,7 +37,7 @@ class BarChart extends Component {
     // data = [linetype, lap_times, total_laps, longest_lap, avg_lap, best_lap]
 
     const totalLaps = parseInt(data[2]);
-    const rectWidthScaling = 20-(totalLaps/9)
+    const rectWidth = 20-(totalLaps/9)
     const longestLap=data[3]
     const lapComplete = data[1].length;
     const timesMax = d3.max(data[1]);
@@ -56,14 +56,13 @@ class BarChart extends Component {
     //calculate x and y for each rect
     var i = 1
     const bars = data[1].map(d=> {
-      const y1 = yScale(d/60)
       const x1 =  xScale(i);
       i+=1
       return {
         x: x1,
         y: yScale(d),
         height: (height-margin.bottom)-yScale(d),
-        width: rectWidthScaling,
+        width: rectWidth,
         fill: "black",
       }
     })

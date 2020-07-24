@@ -6,14 +6,6 @@ import numpy as np
 def time_to_num(time):
     return (int(time[0])*60)+float(time[2:8])
 
-
-# "2": {
-#  driverId: "2",
-#  AUS_pos: [1,1,2,6,......,1]
-#  AUS_lap: [1,2,3,4,.....,54]
-#  AUS_time: [1:34.33,.....1:35.43]
-#
-# },
 tracks = {
     "1010":"ALI_",
     "1011":"BAH_",
@@ -62,15 +54,18 @@ teams='../teams.json'
 
 engines='./engines.json'
 
-def isolate2019(filename, exitfile):
+## Isolates races from 2019 and gives each json element a tag of "raceID_driverID_lap#"
+## Input file: f1/lap_times.csv
+## Output file: 2019lap_times.json
+def isolate2019Season(filename, exitfile):
     data = {}
     with open(filename) as csvFile:
-        csvReader = csv.DictReader(csvFile)
+        laptimes_csv = csv.DictReader(csvFile)
         i=0
-        for rows in csvReader:
-            if(int(rows['raceId'])>=1010 and int(rows['raceId'])<=1030):
-                id=rows['raceId']+"_"+rows['driverId']+"_"+rows['lap']
-                data[id]=rows
+        for lap in laptimes_csv:
+            if(int(lap['raceId'])>=1010 and int(lap['raceId'])<=1030):
+                id=lap['raceId']+"_"+lap['driverId']+"_"+lap['lap']
+                data[id]=lap
 
     with open(exitfile, 'w') as jsonFile:
          jsonFile.write(json.dumps(data, indent=4))
@@ -78,79 +73,46 @@ def isolate2019(filename, exitfile):
 
 
 
-def create2019proflies(filename, exitfile):
+def create2019Profiles(filename, exitfile):
     data={}
     with open(filename, 'r') as jsonFile:
-        laps = json.load(jsonFile)
+        2019_lap_times = json.load(jsonFile)
         i=0
-        prev="1010_822_1"
+        prev_lap="1010_822_1"
         circuit_lap_number=[]
         circuit_lap_times=[]
         circuit_lap_position=[]
         ## rows = "1010_1_1"
-        for rows in laps:
+        for lap in 2019_lap_times:
 
-            if(laps[prev]["driverId"]==laps[rows]["driverId"]):
-                circuit_lap_number.append(laps[rows]["lap"])
-                circuit_lap_times.append(time_to_num(laps[rows]["time"]))
-                circuit_lap_position.append(laps[rows]["position"])
+            if(2019_lap_times[prev_lap]["driverId"]==2019_lap_times[lap]["driverId"]):
+                circuit_lap_number.append(2019_lap_times[lap]["lap"])
+                circuit_lap_times.append(time_to_num(2019_lap_times[lap]["time"]))
+                circuit_lap_position.append(2019_lap_times[lap]["position"])
             else:
-                cunch_prefix=tracks[laps[prev]["raceId"]]
-                print(cunch_prefix)
-                if(len(data)<20): data[laps[prev]["driverId"]] = {}
+                circ_prefix=tracks[2019_lap_times[prev_lap]["raceId"]]
+                print(circ_prefix)
+                if(len(data)<20): data[2019_lap_times[prev_lap]["driverId"]] = {}
 
-                data[laps[prev]["driverId"]]["driverId"] = laps[prev]["driverId"]
-                data[laps[prev]["driverId"]][cunch_prefix+"laps"] = circuit_lap_number
-                data[laps[prev]["driverId"]][cunch_prefix+"time"] =circuit_lap_times
-                data[laps[prev]["driverId"]][cunch_prefix+"position"] =circuit_lap_position
+                ##data[2019_lap_times[prev_lap]["driverId"]]["driverId"] = 2019_lap_times[prev_lap]["driverId"]
+                data[2019_lap_times[prev_lap]["driverId"]][circ_prefix+"2019_lap_times"] = circuit_lap_number
+                data[2019_lap_times[prev_lap]["driverId"]][circ_prefix+"time"] =circuit_lap_times
+                data[2019_lap_times[prev_lap]["driverId"]][circ_prefix+"position"] =circuit_lap_position
                 circuit_lap_number=[]
                 circuit_lap_times=[]
                 circuit_lap_position=[]
-                circuit_lap_number.append(laps[rows]["lap"])
-                circuit_lap_times.append(time_to_num(laps[rows]["time"]))
-                circuit_lap_position.append(laps[rows]["position"])
+                circuit_lap_number.append(2019_lap_times[lap]["lap"])
+                circuit_lap_times.append(time_to_num(2019_lap_times[lap]["time"]))
+                circuit_lap_position.append(2019_lap_times[lap]["position"])
 
 
-            prev = rows
+            prev_lap = lap
 
     print("filewritten")
     with open(exitfile, 'w') as jsonFile:
          jsonFile.write(json.dumps(data, indent=4))
 
-
-def get_dr_and_nums(filename):
-    dr_nums = ["822", "1", "20", "830", "844", "825", "154", "807", "8", "846", "848", "815", "840", "832", "826", "841", "843", "847", "9","817"]
-    x = [int(nums) for nums in dr_nums]
-    x.sort()
-    dr_nums = [str(nums) for nums in x]
-    print(dr_nums)
-    with open(filename, 'r') as jsonFile:
-        laps = json.load(jsonFile)
-        ## rows = "1010_1_1"
-        for rows in laps:
-            #print(rows)
-            if(len(dr_nums)!=0 and rows==dr_nums[0]):
-                print("Driver number:", rows," : ", laps[rows]["driverRef"])
-                dr_nums.remove(rows)
-                print(dr_nums)
-
-# teams = {
-#     {"0" : "alfaromeo", "driver00" : "8" , "driver01" : "841"}
-#     {"1" : "ferrari", "driver00" : "20" , "driver01" : "844"}
-#     {"2" : "haas", "driver00" : "825" , "driver01" : "154"}
-#     {"3" : "maclaren", "driver00" : "846" , "driver01" : "832"}
-#     {"4" : "mercedes", "driver00" : "1" , "driver01" : "822"}
-#     {"5" : "racingpoint", "driver00" : "815" , "driver01" : "840"}
-#     {"6" : "redbull", "driver00" : "830" , "driver01" : "842"}
-#             #### 842 until and including race 1021 || 848 after
-#     {"7" : "renault", "driver00" : "817" , "driver01" : "807"}
-#     {"8" : "torrorosso", "driver00" : "826" , "driver01" : ""}
-#             #### 848 until and including race 1021 || 842 after
-#     {"9" : "williams", "driver00" : "847" , "driver01" : "9"}
-# }
-
-
-def modify2019profiles(filename, exitfile):
+def modify2019Profiles(filename, exitfile):
     dr_nums = {
      "1" : {"name":  "Hamilton", "team" : "4"},
      "8":  {"name": "Raikkonen", "team" : "0"},
@@ -167,11 +129,11 @@ def modify2019profiles(filename, exitfile):
      "832":{"name": "Sainz", "team" : "3"},
      "840":{"name": "Stroll", "team" : "5"},
      "841":{"name": "Giovinazzi", "team" : "0"},
-     "842":{"name":"Gasly", "team" : "610218"},
+     "842":{"name":"Gasly", "team" : "610218"}, #including 1021
      "844":{"name":"Leclerc", "team" : "1"},
      "846":{"name":"Norris", "team" : "3"},
      "847":{"name":"Russell", "team" : "9"},
-     "848":{"name":"Albon", "team" : "810216"},
+     "848":{"name":"Albon", "team" : "810216"}, #including 1021
      }
 
     circuits = {
@@ -210,14 +172,11 @@ def modify2019profiles(filename, exitfile):
                 if(prefix+"laps" in laps[rows] and min(laps[rows][prefix+"time"])<best):
                     best = min(laps[rows][prefix+"time"])
             print(prefix+" best lap="+str(best))
-            for rows in laps:
-                laps[rows][prefix+"longest_lap"]=maxi
 
         for rows in laps:
                 laps[rows]["driverName"] = dr_nums[rows]["name"]
                 laps[rows]["team"] = dr_nums[rows]["team"]
                 for prefix in circuits:
-                    laps[rows][prefix+"total_laps"]=circuits[prefix]["total_laps"]
                     if prefix+"laps" in laps[rows]:
                         if(prefix=="BRA_"):
                             laps[rows][prefix+"laps"].reverse()
@@ -331,7 +290,6 @@ def addEngine(filename, extrafile, exitfile):
 
 #isolate2019(laptimesAllcsv, laptimes2019)
 #create2019proflies(laptimes2019, processedlaptimes2019)
-#get_dr_and_nums(driversAll)
 #modify2019profiles(processedlaptimes2019, modifiedlaptimes2019)
 addEngine(modifiedlaptimes2019, teams, engines)
 
