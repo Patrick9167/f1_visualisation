@@ -1,0 +1,46 @@
+{
+    "1010_822_1": {
+        "raceId": "1010",
+        "driverId": "822",
+        "lap": "1",
+        "position": "1",
+        "time": "1:33.813",
+        "milliseconds": "93813"
+    },
+}
+
+
+## This is what process_data.py/create2019Profiles() generates for the circuit
+## orientated 
+"1010": {
+    "prefix": "ALI_",
+    "822" :{
+        "lap":[],
+        "time":[],
+        "position":[]
+    }
+}
+
+## This is what we want (provisionally)
+## Maybe abbreviation/prefix ie "BAH" instead of ID "1011"??  
+"1010": {
+    "prefix": "ALI_",
+    "Info":{key, longest_lap, total_laps, lap_length(km), avg_lap, best_lap, longest_flat_out, full_throttle(m), turns, raceId, circuit_name, country}
+    These will not be in a collection of "Info" but rather their own elements   
+    "822" :{
+        "lap":[],
+        "time":[],
+        "position":[],
+        "name": "Lewis",
+        "team#": "5", ## for that race so yes maybe raceid as main indicator
+        "total laps completed": "65",
+        "final pos": "4",
+    }
+    "Ferrari": {
+        "time":[],
+        "divisor":[],
+        "longest_lap":"1:56:098",
+        "team#":"11"
+    }
+
+}

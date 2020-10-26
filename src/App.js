@@ -125,7 +125,7 @@ class App extends Component {
             <button value="MEX_" onClick={this.handleCircuitClick}>Mexico</button>
             <button value="USA_" onClick={this.handleCircuitClick}>USA</button>
             <button value="BRA_" onClick={this.handleCircuitClick}>Brazil</button>
-            <button value="ABU_" onClick={this.handleCircuitClick}>Abu Dhabi</button>
+            <button value="ABU_" onClick={this.handleCircuitClick}>Abu Dhabi</button> 
         </div>
         <div className="chart_legend_wrapper">
           <h2 className="teamHeaderBox">{teams[this.state.team]["teamRef"]}</h2>
@@ -151,7 +151,7 @@ class App extends Component {
           <h3>Lap Length = {circuits[this.state.circuit]["lap_length"]}km</h3>
           <h3>Turns = {circuits[this.state.circuit]["turns"]}</h3>
           <h3>Full Throttle = {circuits[this.state.circuit]["full_throttle"]}%</h3>
-          <h3>Max flat out stretch = {circuits[this.state.circuit]["flat_out_long"]}m</h3>
+          <h3>Max flat out stretch = {circuits[this.state.circuit]["longest_flat_out"]}m</h3>
           <button className="lineToggle" value={1} onClick={this.handleLineTypeClick}><h3>Best lap</h3></button>
           <button className="lineToggle" value={0} onClick={this.handleLineTypeClick}><h3>Average lap</h3></button>
         </div>
