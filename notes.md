@@ -25,3 +25,5 @@ Either a predictor to determine the lap time of a driver around a track and whic
 predictor to determine the final position of that driver
 
 maybe to determine the effect of new tyres vs fuel level on lap times? too many variables maybe with tyre wear/strategy/management.. need to determine if drivers push for x amount of laps after new tyres, how that is affected with different tyre compounds
+
+LOOK ON ml_experiment.md for final mission details
