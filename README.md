@@ -1,6 +1,5 @@
 # f1_visualisation
-Laptimes for each team and engine for the 2019 F1 season 
-
+Simple visualisation of each laptime of every driver in each circuit of the 2019 Formula One season. Beside the Bar Chart of the laptimes is a layout of the circuit and some information about that circuit. 
 # To Run
 
 1. Clone the project
