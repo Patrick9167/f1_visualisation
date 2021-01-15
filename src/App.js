@@ -63,7 +63,7 @@ class App extends Component {
     this.setState({circuit: e.target.value});
   }
 
-  handleLineTypeClick = (e) => {
+  handleRedLineClick = (e) => {
     this.setState({linetype: e.target.value});
   }
 
@@ -152,8 +152,8 @@ class App extends Component {
           <h3>Turns = {circuits[this.state.circuit]["turns"]}</h3>
           <h3>Full Throttle = {circuits[this.state.circuit]["full_throttle"]}%</h3>
           <h3>Max flat out stretch = {circuits[this.state.circuit]["longest_flat_out"]}m</h3>
-          <button className="lineToggle" value={1} onClick={this.handleLineTypeClick}><h3>Best lap</h3></button>
-          <button className="lineToggle" value={0} onClick={this.handleLineTypeClick}><h3>Average lap</h3></button>
+          <button className="lineToggle" value={1} onClick={this.handleRedLineClick}><h3>Best lap</h3></button>
+          <button className="lineToggle" value={0} onClick={this.handleRedLineClick}><h3>Average lap</h3></button>
         </div>
       </div>
       // needs to be a json file of circuits with the {id=race # in calendar, name=full name or nickname, circuitAbbr = abbreviation prefix}
