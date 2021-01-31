@@ -59,7 +59,7 @@ def createLaptimeDataset(year: str):
                     data[l["raceId"]][l["driverId"]]["laptimes"]=[] 
                     data[l["raceId"]][l["driverId"]]["lapNumber"]=[]  
                     data[l["raceId"]][l["driverId"]]["position"]=[]   
-                data[l["raceId"]][l["driverId"]]["laptimes"].append(l["time"])
+                data[l["raceId"]][l["driverId"]]["laptimes"].append(int(l["milliseconds"])/1000)
                 data[l["raceId"]][l["driverId"]]["lapNumber"].append(l["lap"])
                 data[l["raceId"]][l["driverId"]]["position"].append(l["position"])
        # print(data)

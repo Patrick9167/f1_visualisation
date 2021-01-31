@@ -4,6 +4,7 @@ import f1_logo from './logos/f1_logo.png';
 import './style/App.css';
 import BarChart from './components/BarChart.js';
 import driverLaps from './f1/modifiedlaptimes2019.json';
+import f1Data from './f1/2019f1data.json'
 import teams from './f1/teams.json'
 import circuits from './f1/circuits.json'
 import engineLaps from './f1/engines.json'
@@ -16,7 +17,8 @@ function importAll(r) {
 
 class App extends Component {
   state = {
-    laptimes: driverLaps,
+    laptimes: f1Data,
+    race: "1010",
     team: "4",
     driver: "1",
     driverRef1: "1",
@@ -40,7 +42,7 @@ class App extends Component {
   }
 
   handleTeamClick = (e) => {
-    this.setState({laptimes:driverLaps})
+    //this.setState({laptimes:driverLaps})
     this.setState({team: e.target.value});
     this.setState({driver: teams[e.target.value]["driver00"]})
     document.getElementById('engine_info').style.display = 'none';
@@ -72,7 +74,7 @@ class App extends Component {
     const circuitPic = importAll(require.context('./f1/images/circuits/', false, /\.(PNG|png|jpe?g|svg)$/));
 
 
-    const data = [this.state.linetype,this.state.laptimes[this.state.driver][this.state.circuit+"time"], circuits[this.state.circuit]["total_laps"],
+    const data = [this.state.linetype,this.state.laptimes[this.state.race][this.state.driver]["laptimes"], circuits[this.state.circuit]["total_laps"],
      circuits[this.state.circuit]["longest_lap"], circuits[this.state.circuit]["avg_lap"], circuits[this.state.circuit]["best_lap"]]
 
     return (
